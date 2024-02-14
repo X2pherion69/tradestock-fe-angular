@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { HomeService, Product } from './home.service';
-import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-home',
@@ -8,14 +7,13 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private homeService: HomeService) {}
-
-  todos = this.homeService.getProducts();
+  products = inject(HomeService).getProducts();
+  productSignal = this.products.result;
   cols: string[] = [];
-  dataSource!: MatTableDataSource<Product>;
+  dataSource!: Product[];
 
   ngOnInit() {
-    this.todos.result$.subscribe((data) => {
+    this.products.result$.subscribe((data) => {
       const tempCols = [];
       if (data.data) {
         for (const key in data.data.products) {
@@ -24,7 +22,7 @@ export class HomeComponent implements OnInit {
           }
         }
         this.cols = Array.from(new Set(tempCols));
-        this.dataSource = new MatTableDataSource(data.data?.products);
+        this.dataSource = data.data?.products;
       }
     });
   }

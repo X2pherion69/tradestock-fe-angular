@@ -1,3 +1,10 @@
-<div class="table-container">
-  <stock-table [cols]="cols" [dataSource]="dataSource"></stock-table>
+<div class="stock-table-section">
+  <div class="table-container">
+    <p class="title-table">Danh sách cổ phiếu</p>
+    <stock-table
+      [cols]="cols"
+      [dataSource]="dataSource"
+      [isLoading]="productSignal().isLoading"
+    ></stock-table>
+  </div>
 </div>

@@ -1,5 +1,23 @@
 .table-container {
   width: 100%;
   display: flex;
+  max-width: 1384px;
+  overflow-x: auto;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.title-table {
+  font-family: Inter, sans-serif;
+  font-size: 1.5rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+.stock-table-section {
+  width: 100%;
+  display: flex;
   justify-content: center;
 }

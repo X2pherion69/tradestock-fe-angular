@@ -1,17 +1,12 @@
-table {
+nz-table {
   width: 100%;
+  margin: 0px;
+  border-collapse: collapse;
 }
 
-th.mat-sort-header-sorted {
-  color: black;
-}
-
-.mat-mdc-header-cell {
-  color: #a7adb2;
-  font-weight: 500;
-  font-size: 0.75rem;
-  line-height: 1.125rem;
-}
-th.mat-cell {
-  color: blue;
+td,
+th {
+  display: table-cell;
+  width: auto;
+  overflow: hidden;
 }

@@ -1,14 +1,38 @@
-<div class="table-container">
-  <table mat-table matSort [dataSource]="dataSource">
-    <ng-container [matColumnDef]="col" *ngFor="let col of columns">
-      <th mat-header-cell mat-sort-header *matHeaderCellDef>
+<nz-table
+  #fixedTable
+  [nzData]="dataSource"
+  [nzScroll]="{ x: '1384px' }"
+  [nzLoading]="isLoading"
+  [nzFrontPagination]="false"
+  [nzPageSize]="pageSize"
+  (nzQueryParams)="onSortChange($event)"
+  nzSize="middle"
+>
+  <thead>
+    <tr>
+      <th
+        *ngFor="let col of columns"
+        id="{{ col }}"
+        [nzColumnKey]="col"
+        [nzLeft]="isSticky(col)"
+        [nzShowSort]="true"
+        (nzSortOrderChange)="onSortOrderChange($event)"
+      >
         {{ convertToColHeader(col) }}
       </th>
-      <td mat-cell *matCellDef="let element">{{ element[col] }}</td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="columns"></tr>
-    <tr mat-row *matRowDef="let row; columns: columns"></tr>
-  </table>
-  <mat-paginator [pageSize]="20" showFirstLastButtons hidePageSize />
-</div>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of fixedTable.data">
+      <td
+        *ngFor="let col of columns"
+        [nzLeft]="isSticky(col)"
+        [ngStyle]="{
+          color: ['id'].includes(col) ? '#FFF' : genCellColor(data[col])
+        }"
+      >
+        {{ data[col] }}
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

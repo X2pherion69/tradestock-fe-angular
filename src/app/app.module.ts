@@ -6,24 +6,31 @@ import { HomeComponent } from './pages/home/home.component';
 import { AppRoutingModule } from './app-routes.modules';
 import { provideQueryClientOptions } from '@ngneat/query';
 import { StockTableComponent } from './pages/shared/stock-table/stock-table.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatSortModule } from '@angular/material/sort';
-import { CdkTableModule } from '@angular/cdk/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
+import { FormsModule } from '@angular/forms';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { LoginComponent } from './pages/login/login.component';
+
+registerLocaleData(en);
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, StockTableComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    HomeComponent,
+    StockTableComponent,
+  ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    MatTableModule,
-    MatSortModule,
-    CdkTableModule,
-    MatPaginatorModule,
     BrowserAnimationsModule,
+    FormsModule,
+    NzTableModule,
   ],
   providers: [
     provideQueryClientOptions({
@@ -35,6 +42,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         },
       },
     }),
+    { provide: NZ_I18N, useValue: en_US },
   ],
   bootstrap: [AppComponent],
 })

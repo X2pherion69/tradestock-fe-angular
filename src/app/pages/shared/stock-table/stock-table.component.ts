@@ -1,7 +1,7 @@
-import { Component, Input, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, Input } from '@angular/core';
+import { NzTableQueryParams } from 'ng-zorro-antd/table';
+
+const isNumber = (value: any) => typeof value === 'number' && !isNaN(value);
 
 @Component({
   selector: 'stock-table',
@@ -10,16 +10,19 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class StockTableComponent<T> {
   @Input('cols') columns: string[] = [];
-  @Input('dataSource') dataSource!: MatTableDataSource<T>;
+  @Input('dataSource') dataSource!: T[] | any[];
+  @Input('isLoading') isLoading!: boolean;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+  pageSize: number = 30;
+  sortDirection: string | null = null;
+  sortColumn: string | null = null;
 
-  ngOnChanges() {
-    if (this.dataSource) {
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    }
+  onSortChange(e: NzTableQueryParams): void {
+    console.log(e);
+  }
+
+  onSortOrderChange(e: string | null): void {
+    console.log(e);
   }
 
   convertToColHeader(input: string): string {
@@ -32,5 +35,27 @@ export class StockTableComponent<T> {
       .join(' ');
 
     return label;
+  }
+
+  isSticky(c: string) {
+    return ['id'].includes(c);
+  }
+
+  genCellColor(value: any) {
+    let color;
+
+    if (!isNumber(value)) {
+      return '#FFF';
+    }
+
+    if (value < 0) {
+      color = 'red';
+    } else if (value === 0) {
+      color = 'yellow';
+    } else {
+      color = 'green';
+    }
+
+    return color;
   }
 }
