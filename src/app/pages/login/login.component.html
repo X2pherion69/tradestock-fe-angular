@@ -1,1 +1,6 @@
-<div>login page</div>
+<div>{{ user?.id }}</div>
+<div>{{ user?.firstName }}</div>
+<div>{{ user?.lastName }}</div>
+<div>{{ user?.token }}</div>
+<button (click)="onChangeUser()">Change User</button>
+<button (click)="onResetUser()">Reset</button>

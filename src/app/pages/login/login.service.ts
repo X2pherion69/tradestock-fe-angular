@@ -7,7 +7,7 @@ interface LoginPayload {
   password: string;
 }
 
-interface LoginResponse {
+export interface User {
   id: number;
   username: string;
   email: string;
@@ -26,10 +26,7 @@ export class LoginService {
   loginHandler() {
     return this.#mutation({
       mutationFn: (data: LoginPayload) =>
-        this.#http.post<LoginResponse>(
-          'https://dummyjson.com/auth/login',
-          data
-        ),
+        this.#http.post<User>('https://dummyjson.com/auth/login', data),
     });
   }
 }
