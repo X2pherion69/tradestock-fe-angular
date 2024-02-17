@@ -7,7 +7,7 @@
 
 body {
   margin: 0;
-  background-color: black;
+  background-color: #0a0a0a;
   overflow-x: hidden;
 }
 
@@ -26,4 +26,28 @@ h6 {
   overflow-y: auto;
   min-height: 100vh;
   padding: 20px;
+}
+
+.ant-table-thead .ant-table-cell {
+  background-color: #161616;
+}
+
+.ant-table-tbody > tr > td {
+  background-color: #0a0a0a;
+}
+
+.ant-table-tbody > tr > td:hover {
+  cursor: pointer;
+}
+
+.ant-table-container table > thead > tr:first-child th:first-child {
+  border-top-left-radius: 5px;
+}
+
+.ant-table-container table > thead > tr:first-child th:last-child {
+  border-top-right-radius: 5px;
+}
+
+.ant-table table {
+  background: #0a0a0a;
 }

@@ -28,7 +28,7 @@
         *ngFor="let col of columns"
         [nzLeft]="isSticky(col)"
         [ngStyle]="{
-          color: ['id'].includes(col) ? '#FFF' : genCellColor(data[col])
+          color: ['id'].includes(col) ? '#FFF' : genCellColor(data[col]),
         }"
       >
         {{ data[col] }}

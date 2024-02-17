@@ -1588,6 +1588,13 @@
   dependencies:
     call-bind "^1.0.5"
 
+"@ngneat/query-devtools@^2.0.0-beta.0":
+  version "2.0.0-beta.0"
+  resolved "https://registry.yarnpkg.com/@ngneat/query-devtools/-/query-devtools-2.0.0-beta.0.tgz#5697c317df649917b329b502634334af5b9cf944"
+  integrity sha512-H2SOT+W9I3slegcY6C8NjsZOm5LfHzKTSJ2lL8Vlu2jLtWe2JEFUzSalrcyCQpbgiUSmsNUMBAVqItI5s5Q17w==
+  dependencies:
+    tslib "^2.3.0"
+
 "@ngneat/query@^2.0.0-beta.11":
   version "2.0.0-beta.11"
   resolved "https://registry.yarnpkg.com/@ngneat/query/-/query-2.0.0-beta.11.tgz#fb059b6cd62ddc860eab2f3db8ff6a318cc2af2f"

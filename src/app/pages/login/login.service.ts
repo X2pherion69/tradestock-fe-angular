@@ -23,7 +23,7 @@ export class LoginService {
   #http = inject(HttpClient);
   #mutation = injectMutation();
 
-  loginHandler() {
+  loginHook() {
     return this.#mutation({
       mutationFn: (data: LoginPayload) =>
         this.#http.post<User>('https://dummyjson.com/auth/login', data),

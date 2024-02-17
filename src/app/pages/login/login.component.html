@@ -1,6 +1,41 @@
-<div>{{ user?.id }}</div>
-<div>{{ user?.firstName }}</div>
-<div>{{ user?.lastName }}</div>
-<div>{{ user?.token }}</div>
-<button (click)="onChangeUser()">Change User</button>
-<button (click)="onResetUser()">Reset</button>
+<form
+  nz-form
+  [formGroup]="validator"
+  (ngSubmit)="submitForm()"
+  class="form-layout"
+>
+  <nz-form-item>
+    <nz-form-control nzDisableAutoTips [nzErrorTip]="usernameErrorTpl">
+      <nz-input-group nzPrefixIcon="user">
+        <input
+          type="text"
+          nz-input
+          formControlName="username"
+          placeholder="Username"
+        />
+      </nz-input-group>
+      <ng-template #usernameErrorTpl let-control>
+        @if(control.errors?.['required']) { Username required }
+        @if(control.errors?.['minlength']) { Min length is 5 }
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control [nzErrorTip]="passwordErrorTpl">
+      <nz-input-group nzPrefixIcon="lock">
+        <input
+          type="password"
+          nz-input
+          formControlName="password"
+          placeholder="Password"
+        />
+      </nz-input-group>
+      <ng-template #passwordErrorTpl let-control>
+        @if(control.errors?.['required']) { Password required }
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <button nz-button [nzType]="'primary'" [disabled]="!validator.valid">
+    Log in
+  </button>
+</form>
